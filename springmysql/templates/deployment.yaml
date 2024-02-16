@@ -79,7 +79,7 @@ spec:
                 name: {{ .Values.db.password }}
                 key: password
           - name: DATABASESERVER_PORT
-            value: {{ .Values.db.port }}
+            value: "{{ .Values.db.port }}"
           - name: TZ
             value: {{ .Values.db.timezone }}
       {{- with .Values.nodeSelector }}
