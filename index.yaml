@@ -3,13 +3,24 @@ entries:
   springmysql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-02-16T17:57:14.232815+09:00"
+    created: "2024-02-16T23:59:30.3678427+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
-    digest: 4b5609052f9a90ab126e5bcc78cbd1afcfe355d3cf006b1a71e1ae221ec80636
+    digest: 974a61508394af3e2feb7535f6f542d3be88799f2d0321c7453ee95aeaa49d68
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
     name: springmysql
     type: application
     urls:
-    - springmysql-0.1.0.tgz
+    - https://seotaeeyoul.github.io/helm-repo/springmysql-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-16T23:59:30.3673165+09:00"
+    description: A Helm chart for Kubernetes - SpringBoot 예제
+    digest: 8280560e172bbe00d6a04681abcb62d6940a544b0c97711e7ca5da5d85266d0e
+    icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
+    name: springmysql
+    type: application
+    urls:
+    - https://seotaeeyoul.github.io/helm-repo/springmysql-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-16T17:57:14.230611+09:00"
+generated: "2024-02-16T23:59:30.3667916+09:00"
