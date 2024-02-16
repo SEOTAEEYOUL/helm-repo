@@ -70,14 +70,14 @@ spec:
           - name: DB_DRIVER
             value: {{ .Values.db.driver }}
           - name: DB_CONNECTION
-            value:  {{ .Values.db.connection }}
+            value: {{ .Values.db.connection }}
           - name: DB_USERNAME
             value: {{ .Values.db.user }}
           - name: DB_PASSWORD
             valueFrom:
-            secretKeyRef:
-              name: {{ .Values.db.password }}
-              key: password
+              secretKeyRef:
+                name: {{ .Values.db.password }}
+                key: password
           - name: DATABASESERVER_PORT
             value: {{ .Values.db.port }}
           - name: TZ
