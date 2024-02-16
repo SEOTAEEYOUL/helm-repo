@@ -92,8 +92,6 @@ spec:
             key: password
         - name: DATABASESERVER_PORT
           value: {{ .Values.db.port }}
-        - name: ENCRYPT_KEY
-          value: "IMSYMMETRIC"
         - name: TZ
           value: {{ .Values.db.timezone }}
 
