@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: 592806604814.dkr.ecr.ap-northeast-2.amazonaws.com/07456-p-springmysql
+  repository: taeeyoul/springmysql
   pullPolicy: Always # IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.2.0"
+  tag: "2.0.0"
 
 imagePullSecrets: []
 nameOverride: ""
