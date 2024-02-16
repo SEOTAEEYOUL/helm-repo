@@ -35,6 +35,24 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+      - env:
+        - name: TITLE
+          value: {{ include "springmysql.fullname" . }}
+        - name: DB_DRIVER
+          value: {{ .Values.db.driver }}
+        - name: DB_CONNECTION
+          value:  {{ .Values.db.connection }}
+        - name: DB_USERNAME
+          value: {{ .Values.db.user }}
+        - name: DB_PASSWORD
+          valueFrom:
+          secretKeyRef:
+            name: {{ .Values.db.password }}
+            key: password
+        - name: DATABASESERVER_PORT
+          value: {{ .Values.db.port }}
+        - name: TZ
+          value: {{ .Values.db.timezone }}
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -76,24 +94,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      env:
-        - name: TITLE
-          value: {{ include "springmysql.fullname" . }}
-        - name: DB_DRIVER
-          value: {{ .Values.db.driver }}
-        - name: DB_CONNECTION
-          value:  {{ .Values.db.connection }}
-        - name: DB_USERNAME
-          value: {{ .Values.db.user }}
-        - name: DB_PASSWORD
-          valueFrom:
-          secretKeyRef:
-            name: {{ .Values.db.password }}
-            key: password
-        - name: DATABASESERVER_PORT
-          value: {{ .Values.db.port }}
-        - name: TZ
-          value: {{ .Values.db.timezone }}
 
 
 
