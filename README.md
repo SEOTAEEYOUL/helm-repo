@@ -73,7 +73,7 @@ ingress.networking.k8s.io/springaurora-springmysql   alb     springaurora.paas-c
 PS > 
 ```
 
-## 6. 배포 확인, 정상적으로 chart 패키지 파일이 배포된 것을 확인 할 수 있음
+## 배포 확인, 정상적으로 chart 패키지 파일이 배포된 것을 확인 할 수 있음
 ```
 PS > curl springaurora.paas-cloud.org
 <html>
