@@ -65,22 +65,22 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name: TITLE
+          - name: TITLE
             value: {{ include "springmysql.fullname" . }}
-            - name: DB_DRIVER
+          - name: DB_DRIVER
             value: {{ .Values.db.driver }}
-            - name: DB_CONNECTION
+          - name: DB_CONNECTION
             value:  {{ .Values.db.connection }}
-            - name: DB_USERNAME
+          - name: DB_USERNAME
             value: {{ .Values.db.user }}
-            - name: DB_PASSWORD
+          - name: DB_PASSWORD
             valueFrom:
             secretKeyRef:
-                name: {{ .Values.db.password }}
-                key: password
-            - name: DATABASESERVER_PORT
+              name: {{ .Values.db.password }}
+              key: password
+          - name: DATABASESERVER_PORT
             value: {{ .Values.db.port }}
-            - name: TZ
+          - name: TZ
             value: {{ .Values.db.timezone }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
