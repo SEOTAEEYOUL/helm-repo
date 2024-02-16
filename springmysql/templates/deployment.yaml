@@ -94,5 +94,8 @@ spec:
           value: {{ .Values.db.port }}
         - name: ENCRYPT_KEY
           value: "IMSYMMETRIC"
+        - name: TZ
+          value: {{ .Values.db.timezone }}
+
 
 
