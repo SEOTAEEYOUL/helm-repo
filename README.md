@@ -6,6 +6,11 @@
 |:---|:---|:---| 
 | springmysql | AWS 상의 Aurora MySQL 연동 샘플 | 0.1.0 |  
 
+## SpringMySQL
+| 항목 | 설명 | 값 |  
+|:---|:---|:---|  
+| | | |  
+
 ## helm chart 를 등록하고 클러스터에 배포
 ```
 helm repo add taeyeol-repo https://seotaeeyoul.github.io/helm-repo/
