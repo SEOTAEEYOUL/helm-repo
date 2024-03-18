@@ -1,4 +1,5 @@
 # [taeyeol-repo :: helm repo](https://seotaeeyoul.github.io/helm-repo/)
+![helm.svg](./img/helm.svg)
 
 ## 태열의 개인 Helm Repo
 
