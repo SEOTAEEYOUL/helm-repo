@@ -29,7 +29,7 @@ spec:
         protocol: {{ .Values.targetGroupBinding.ports.protocol }}
   serviceRef:
     name: {{ include "springmysql.fullname" . }}
-    port: {{ .Values.service.port }}
+    port: {{ .Values.targetGroupBinding.ports.port }}
   targetGroupARN: {{ .Values.targetGroupBinding.targetGroupARN }}
   targetType: {{ .Values.targetGroupBinding.targetType }}
 {{- end }}
