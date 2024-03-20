@@ -40,6 +40,16 @@ service:
   type: ClusterIP
   port: 8080
 
+targetGroupBinding:
+  enabled: false
+  from:
+    securityGroup: ""
+  ports:
+    port: http
+    protocol: TCP
+  targetGroupARN: ""
+  targetType: ip
+
 ingress:
   enabled: true
   className: "alb"

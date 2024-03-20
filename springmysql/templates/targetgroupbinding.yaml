@@ -1,0 +1,37 @@
+{{- if .Values.targetGroupBinding.create -}}
+
+# targetGroupBinding:
+#   enabled: false
+#   from:
+#     securityGroup: ""
+#   ports:
+#     port: http
+#     protocol: TCP
+#   targetGroupARN: ""
+#   targetType: ip
+
+apiVersion: v1
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  labels:
+    ingress.k8s.aws/stack: app
+  name: -tgb
+  namespace: default
+spec:
+  ipAddressType: ipv4
+  networking:
+    ingress:
+    - from:
+      - securityGroup:
+          groupID: {{ .Values.targetGroupBinding.from.securityGroup }}
+      ports:
+      - port: {{ .Values.targetGroupBinding.ports.port }}
+        protocol: {{ .Values.targetGroupBinding.ports.protocol }}
+  serviceRef:
+    name: {{ include "springmysql.fullname" . }}
+    port: {{ .Values.service.port }}
+  # targetGroupARN: arn:aws:elasticloadbalancing:ap-northeast-2:592806604814:targetgroup/k8s-springaurora-01/7956a7a5fedf7815
+  targetGroupARN: {{ .Values.targetGroupBinding.targetGroupARN }}
+  targetType: {{ .Values.targetGroupBinding.targetType }}
+{{- end }}
