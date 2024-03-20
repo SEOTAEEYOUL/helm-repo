@@ -1,4 +1,4 @@
-{{- if .Values.targetGroupBinding.create -}}
+{{- if .Values.targetGroupBinding.enabled -}}
 
 # targetGroupBinding:
 #   enabled: false
