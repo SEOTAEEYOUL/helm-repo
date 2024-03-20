@@ -53,34 +53,10 @@ targetGroupBinding:
 ingress:
   enabled: true
   className: "alb"
-  annotations: # {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-    # alb.ingress.kubernetes.io/scheme: internal
-    # nginx.ingress.kubernetes.io/use-regex: "true"
-    # kubernetes.io/ingress.class: alb
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip 
-    alb.ingress.kubernetes.io/subnets: "subnet-066909d2e2922609a, subnet-0d5e779058df9b587"
-    alb.ingress.kubernetes.io/group.name: app
-    alb.ingress.kubernetes.io/load-balancer-name: alb-skcc-07456-p-eks-front
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80, "HTTPS": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:592806604814:certificate/3070fce1-951c-4a55-bba0-e4b10b5e6aa5
-    alb.ingress.kubernetes.io/tags: Personalinformation=yes,ServiceName=is07456,Environment=prd,service=paas,Appl=paas,Stage=운영    
-  hosts:
-    - host: springaurora.paas-cloud.org
-      paths:
-        - path: /
-          # pathType: ImplementationSpecific
-          pathType: Prefix
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  annotations: {}
 
-resources: # {}
+
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -91,47 +67,23 @@ resources: # {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-  limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 250m
-    memory: 256Mi
+
 
 autoscaling:
   enabled: true
   minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50 # 80
-  # targetMemoryUtilizationPercentage: 80
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80 
 
 nodeSelector: {}
 
 tolerations: []
 
-affinity: # {}
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: role
-          operator: In
-          values:
-          - worker
-  podAntiAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-    - podAffinityTerm:
-        labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - springmysql
-        topologyKey: failure-domain.beta.kubernetes.io/zone
-      weight: 100
+affinity: {}
+
 
 secret:
-  enabled: true
+  enabled: false
   name: "aurora-mysql-secret"
   string: "ZGxhdGwhMDA="
 
