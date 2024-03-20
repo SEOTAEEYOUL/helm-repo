@@ -16,8 +16,7 @@ kind: TargetGroupBinding
 metadata:
   labels:
     ingress.k8s.aws/stack: app
-  name: -tgb
-  namespace: default
+  name: {{ include "springmysql.fullname" . }}-tgb
 spec:
   ipAddressType: ipv4
   networking:
@@ -31,7 +30,6 @@ spec:
   serviceRef:
     name: {{ include "springmysql.fullname" . }}
     port: {{ .Values.service.port }}
-  # targetGroupARN: arn:aws:elasticloadbalancing:ap-northeast-2:592806604814:targetgroup/k8s-springaurora-01/7956a7a5fedf7815
   targetGroupARN: {{ .Values.targetGroupBinding.targetGroupARN }}
   targetType: {{ .Values.targetGroupBinding.targetType }}
 {{- end }}
