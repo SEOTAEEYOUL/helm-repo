@@ -5,8 +5,18 @@ kind: TargetGroupBinding
 metadata:
   name: {{ include "springmysql.fullname" . }}-tgb
 spec:
+  ipAddressType: ipv4
+  networking:
+    ingress:
+    - from:
+      - securityGroup:
+          groupID: {{ .Values.targetGroupBinding.from.securityGroup }}
+      ports:
+      - port: {{ .Values.targetGroupBinding.ports.port }}
+        protocol: {{ .Values.targetGroupBinding.ports.protocol }}
   serviceRef:
     name: {{ include "springmysql.fullname" . }}
     port: {{ .Values.targetGroupBinding.ports.port }}
   targetGroupARN: {{ .Values.targetGroupBinding.targetGroupARN }}
+  targetType: {{ .Values.targetGroupBinding.targetType }}
 {{- end }}
