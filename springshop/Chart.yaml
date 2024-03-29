@@ -1,6 +1,6 @@
 apiVersion: v2
 name: springshop
-description: A Helm chart for Kubernetes - SpringBoot 로 만든 상점 예제
+description: SpringBoot 로 만든 상점 예제
 
 # A chart can be either an 'application' or a 'library' chart.
 #

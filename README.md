@@ -35,14 +35,13 @@ Update Complete. ⎈Happy Helming!⎈
 PS > helm repo list  
 NAME            URL
 taeyeol-repo    https://seotaeeyoul.github.io/helm-repo/
-PS > helm search repo
-NAME                            CHART VERSION   APP VERSION     DESCRIPTION
-
-taeyeol-repo/springmysql        0.1.0           1.16.0          A Helm chart for Kubernetes - SpringBoot 예제
 PS > helm search repo taeyeol-repo
 NAME                            CHART VERSION   APP VERSION     DESCRIPTION
-
-taeyeol-repo/springmysql        0.1.0           1.16.0          A Helm chart for Kubernetes - SpringBoot 예제
+taeyeol-repo/springmysql        0.1.6           2.0.0           A Helm chart for Kubernetes - SpringBoot 예제
+taeyeol-repo/springshop         0.1.0           1.0.0           A Helm chart for Kubernetes - SpringBoot 로 만든...
+PS > helm search repo taeyeol-repo/springshop  --versions
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+taeyeol-repo/springshop 0.1.0           1.0.0           A Helm chart for Kubernetes - SpringBoot 로 만든...
 PS > helm install springaurora taeyeol-repo/springmysql
 W0216 18:07:36.889430   26108 warnings.go:70] unknown field "spec.template.spec.env"
 NAME: springaurora
