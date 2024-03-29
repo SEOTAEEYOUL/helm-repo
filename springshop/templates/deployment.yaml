@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "springshop.fullname" . }}
+  labels:
+    {{- include "springshop.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "springshop.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "springshop.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "springshop.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.initContainers.enabled -}}
+      initContainers:
+      - name: git-clone-init
+        image: alpine/git # 이 이미지는 git 명령어를 지원합니다
+        volumeMounts:
+        - name: efs-volume
+          mountPath: "/data"
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - |
+          if [ ! -d /data ]; then 
+            mkdir -p /data && cd /data
+            git clone https://github.com/SEOTAEEYOUL/item.git
+          fi
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+          - name: TITLE
+            value: {{ include "springmyshop.fullname" . }}
+          - name: DB_DRIVER
+            value: {{ .Values.db.driver }}
+          - name: DB_CONNECTION
+            value: {{ .Values.db.connection }}
+          - name: DB_USERNAME
+            value: {{ .Values.db.user }}
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.db.password }}
+                key: password
+          - name: DATABASESERVER_PORT
+            value: "{{ .Values.db.port }}"
+          - name: TZ
+            value: {{ .Values.db.timezone }}
+          volumeMounts:
+            - mountPath: {{ .Values.volumeMounts.mountPath }}
+              name: {{ .Values.persistent.volumes.name }}
+      volumes:
+        - name: {{ .Values.persistent.volumes.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistent.volumes.persistentVolumeClaimName }}  
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

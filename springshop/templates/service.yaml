@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "springshop.fullname" . }}
+  labels:
+    {{- include "springshop.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: jmx-exporter
+      port: {{ .Values.jmx-exporter.port }}
+      protocol: TCP
+      targetPort: {{ .Values.jmx-exporter.port }}
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "springshop.selectorLabels" . | nindent 4 }}

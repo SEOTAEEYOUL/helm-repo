@@ -1,0 +1,122 @@
+# Default values for springshop.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: taeeyoul/springshop
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.0.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# initContainers:
+#   enabled: true
+#     name: git-clone-init
+#     image:
+#       repository: alpine/git # 이 이미지는 git 명령어를 지원합니다
+#       pullPolicy: IfNotPresent
+#       # Overrides the image tag whose default is the chart appVersion.
+#       tag: ""
+
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+targetGroupBinding:
+  enabled: false
+  from:
+    securityGroup: ""
+  ports:
+    port: http
+    protocol: TCP
+  targetGroupARN: ""
+  targetType: ip
+
+ingress:
+  enabled: false
+  className: "alb"
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: springshop.paas-cloud.org
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistent:
+  volumeMounts:
+    mountPath: "/data"  
+  volumes:
+    name : "persistent-storage"
+    persistentVolumeClaimName: "efs-sc-pvc"
+
+secret:
+  enabled: false
+  name: "aurora-mysql-secret"
+  string: "ZGxhdGwhMDA="
+
+db:
+  user: "shop"
+  password: "aurora-mysql-secret"
+  driver: "software.aws.rds.jdbc.mysql.Driver"
+  connection: "jdbc:mysql:aws://rds-skcc-07456-p-aurora-mysql.cluster-cgxth7zggvw1.ap-northeast-2.rds.amazonaws.com:3306/shop?serverTimezone=UTC&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&maxReconnects=10"
+  port: 3306
+  timezone: "Asia/Seoul"
