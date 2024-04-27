@@ -8,7 +8,12 @@ image:
   repository: taeeyoul/springmysql
   pullPolicy: Always # IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2.0.0"
+  tag: "2.1.0"
+
+aws:
+  region: ap-northeast-2
+  eks:
+    clusterName: "sksh-argos-d-oss-ui-01"
 
 imagePullSecrets: []
 nameOverride: ""
