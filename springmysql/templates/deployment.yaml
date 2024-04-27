@@ -67,7 +67,7 @@ spec:
           env:
           - name: REGION
             value: {{ .Values.aws.region }}
-          - name: CLUSER_NAME
+          - name: CLUSTER_NAME
             value: {{ .Values.aws.eks.clusterName }}
           - name: TITLE
             value: {{ include "springmysql.fullname" . }}
