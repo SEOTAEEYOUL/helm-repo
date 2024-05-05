@@ -19,6 +19,24 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+initContainer:
+  script: |
+    #!/bin/sh
+
+    # GitHub 저장소 클론
+    git clone https://github.com/SEOTAEEYOUL/item.git /data
+
+    # MySQL에 데이터 로딩
+    for sql_file in /data/dump/*.sql; do
+      filename=$(basename "$sql_file")
+      mysql -h $DB_CONNECTION -u $DB_USERNAME -p $DB_PASSWORD -D $DATABASE < "$sql_file"
+    done
+
+persistent:
+  pvc: "efs-sc-pvc"
+  mountPath: "/data"
+
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
