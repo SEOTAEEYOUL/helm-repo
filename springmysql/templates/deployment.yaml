@@ -38,7 +38,7 @@ spec:
       initContainers:
       - name: data-loading-init
         image: alpine/git # 이 이미지는 git 명령어를 지원합니다
-        {{- with .Values.persistent.create }}
+        {{- if .Values.persistent.create }}
         volumeMounts:
         - name: persistent-storage
           mountPath: {{ .Values.persistent.mountPath }} # "/data"
