@@ -34,6 +34,39 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+
+      {{- if .Values.initContainer.enabled }}
+      initContainers:
+      - name: data-loading-init
+        image: alpine/git # 이 이미지는 git 명령어를 지원합니다
+        {{- if .Values.persistent.use }}
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: {{ .Values.persistent.mountPath }}
+        {{- end }}
+        {{- with .Values.initContainer.script }}
+        command: [ "/bin/sh", "-c" ]
+        args:
+        - |
+          {{ . | indent 4 }}
+        {{- end }}
+        env:        
+        - name: DATABASE
+          value: {{ .Values.db.database }}
+        - name: DB_DRIVER
+          value: {{ .Values.db.driver }}
+        - name: DB_CONNECTION
+          value: {{ .Values.db.connection }}
+        - name: DB_USERNAME
+          value: {{ .Values.db.user }}
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.db.password }}
+              key: password
+      {{- end }}
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
