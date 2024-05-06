@@ -38,7 +38,7 @@ spec:
 
       {{- if .Values.initContainer.enabled }}
       initContainers:
-      - name: data-loading-init
+      - name: init
         image: {{ .Values.initContainer.name }} # 이 이미지는 git 명령어를 지원합니다
         {{- if .Values.persistent.use }}
         volumeMounts:
