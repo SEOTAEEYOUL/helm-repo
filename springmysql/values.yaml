@@ -21,7 +21,7 @@ fullnameOverride: ""
 
 initContainer:
   enabled: true
-  name: gitmysql
+  name: "taeeyoul/gitmysql"
   script: |
     #!/bin/sh
 
