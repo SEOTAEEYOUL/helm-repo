@@ -20,6 +20,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 initContainer:
+  create: true
   script: |
     #!/bin/sh
 
@@ -33,6 +34,7 @@ initContainer:
     done
 
 persistent:
+  create: true
   pvc: "efs-sc-pvc"
   mountPath: "/data"
 
