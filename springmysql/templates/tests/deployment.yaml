@@ -34,37 +34,6 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.initContainer.enabled }}
-      initContainers:
-      - name: data-loading-init
-        image: alpine/git
-        {{- if .Values.persistent.use }}
-        {{- if .Values.persistent.use }}
-        volumeMounts:
-        - name: persistent-storage
-          mountPath: {{ .Values.persistent.mountPath }}
-        {{- end }}
-        {{- with .Values.initContainer.script }}
-        command: [ "/bin/sh", "-c" ]
-        args:
-        - |
-          {{ . | indent 4 }}
-        {{- end }}
-        env:        
-        - name: DATABASE
-          value: {{ .Values.db.database }}
-        - name: DB_DRIVER
-          value: {{ .Values.db.driver }}
-        - name: DB_CONNECTION
-          value: {{ .Values.db.connection }}
-        - name: DB_USERNAME
-          value: {{ .Values.db.user }}
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.db.password }}
-              key: password
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -117,17 +86,6 @@ spec:
             value: "{{ .Values.db.port }}"
           - name: TZ
             value: {{ .Values.db.timezone }}
-          {{- if .Values.persistent.use }}
-          volumeMounts:
-            - mountPath: {{ .Values.persistent.mountPath }} # /data
-              name: persistent-storage
-          {{- end }}
-      {{- if .Values.persistent.use }}
-      volumes:
-        - name: persistent-storage
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistent.pvc }} # efs-sc-pvc
-      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
