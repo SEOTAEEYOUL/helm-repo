@@ -34,7 +34,7 @@ initContainer:
     done
 
 persistent:
-  create: true
+  use: true
   pvc: "efs-sc-pvc"
   mountPath: "/data"
 
