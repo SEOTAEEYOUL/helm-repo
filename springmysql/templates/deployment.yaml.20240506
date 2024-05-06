@@ -34,20 +34,26 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.initContainer.enabled }}
+      {{- with .Values.initContainer.create }}
       initContainers:
       - name: data-loading-init
         image: alpine/git # 이 이미지는 git 명령어를 지원합니다
-        {{- if .Values.persistent.use }}
+        {{- with .Values.persistent.create }}
         volumeMounts:
         - name: persistent-storage
-          mountPath: {{ .Values.persistent.mountPath }}
+          mountPath: {{ .Values.persistent.mountPath }} # "/data"
         {{- end }}
         {{- with .Values.initContainer.script }}
         command: [ "/bin/sh", "-c" ]
         args:
         - |
           {{ . | indent 4 }}
+          # if [ ! -d {{ .Values.persistent.mountPath }} ]; then 
+          #   mkdir -p {{ .Values.persistent.mountPath }} && cd {{ .Values.persistent.mountPath }}
+          #   git clone https://github.com/SEOTAEEYOUL/item.git /data
+
+          #   mysql -h $DB_CONNECTION -u $DB_USERNAME -p $DB_PASSWORD -D $DATABASE < /data/book.sql            
+          # fi
         {{- end }}
         env:        
         - name: DATABASE
@@ -116,12 +122,12 @@ spec:
             value: "{{ .Values.db.port }}"
           - name: TZ
             value: {{ .Values.db.timezone }}
-          {{- if .Values.persistent.use }}
+          {{- with .Values.initContainer.create }}
           volumeMounts:
             - mountPath: {{ .Values.persistent.mountPath }} # /data
               name: persistent-storage
           {{- end }}
-      {{- if .Values.persistent.use }}
+      {{- with .Values.initContainer.create }}
       volumes:
         - name: persistent-storage
           persistentVolumeClaim:
