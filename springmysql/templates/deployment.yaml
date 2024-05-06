@@ -38,19 +38,34 @@ spec:
 
       {{- if .Values.initContainer.enabled }}
       initContainers:
-      - name: init
-        image: {{ .Values.initContainer.name }} # 이 이미지는 git 명령어를 지원합니다
+      - name: init-git
+        image: "{{ .Values.initContainer.git }}" # 이 이미지는 git 명령어를 지원합니다
         {{- if .Values.persistent.use }}
         volumeMounts:
         - name: persistent-storage
           mountPath: {{ .Values.persistent.mountPath }}
         {{- end }}
-        {{- with .Values.initContainer.script }}
+        {{- with .Values.initContainer.git.script }}
         command: [ "/bin/sh", "-c" ]
         args:
         - |
-{{ . | indent 10 }}
+{{ . | indent 12 }}
+
+      - name: init-mysql
+        image: "{{ .Values.initContainer.mysql }}" # 이 이미지는 git 명령어를 지원합니다
+        {{- if .Values.persistent.use }}
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: {{ .Values.persistent.mountPath }}
         {{- end }}
+        {{- with .Values.initContainer.mysql.script }}
+        command: [ "/bin/sh", "-c" ]
+        args:
+        - |
+{{ . | indent 12 }}
+      {{- end }}
+
+
         env:        
         - name: DATABASE
           value: {{ .Values.db.database }}

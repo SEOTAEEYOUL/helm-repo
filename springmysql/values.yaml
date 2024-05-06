@@ -20,19 +20,21 @@ nameOverride: ""
 fullnameOverride: ""
 
 initContainer:
+  git: "alpine/git"
+    script: |
+      #!/bin/sh
+
+      # GitHub 저장소 클론
+      git clone https://github.com/SEOTAEEYOUL/item.git /data
   enabled: true
-  name: "taeeyoul/gitmysql"
-  script: |
-    #!/bin/sh
 
-    # GitHub 저장소 클론
-    git clone https://github.com/SEOTAEEYOUL/item.git /data
-
-    # MySQL에 데이터 로딩
-    for sql_file in /data/dump/*.sql; do
-      filename=$(basename "$sql_file")
-      mysql -h $DB_CONNECTION -u $DB_USERNAME -p $DB_PASSWORD -D $DATABASE < "$sql_file"
-    done
+  mysql: "mysql:8.4.0"
+    script: |
+      # MySQL에 데이터 로딩
+      for sql_file in /data/dump/*.sql; do
+        filename=$(basename "$sql_file")
+        mysql -h $DB_CONNECTION -u $DB_USERNAME -p $DB_PASSWORD -D $DATABASE < "$sql_file"
+      done
 
 persistent:
   use: true
