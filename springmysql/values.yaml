@@ -20,7 +20,8 @@ nameOverride: ""
 fullnameOverride: ""
 
 initContainer:
-  create: true
+  enabled: true
+  name: gitmysql
   script: |
     #!/bin/sh
 
