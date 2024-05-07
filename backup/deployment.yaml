@@ -82,7 +82,7 @@ spec:
             secretKeyRef:
               name: {{ .Values.db.password }}
               key: password
-        - name: DATABASESERVER_PORT
+        - name: DB_PORT
           value: "{{ .Values.db.port }}"
         - name: TZ
           value: {{ .Values.db.timezone }}
@@ -136,8 +136,8 @@ spec:
               secretKeyRef:
                 name: {{ .Values.db.password }}
                 key: password
-          - name: DATABASESERVER_PORT
-            value: {{ .Values.db.port }}
+          - name: DB_PORT
+            value: "{{ .Values.db.port }}"
           - name: TZ
             value: {{ .Values.db.timezone }}
           {{- if .Values.persistent.use }}
