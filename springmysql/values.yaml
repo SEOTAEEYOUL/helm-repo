@@ -20,7 +20,8 @@ nameOverride: ""
 fullnameOverride: ""
 
 initContainer:
-  git: "alpine/git"
+  git:
+    image: "alpine/git"
     script: |
       #!/bin/sh
 
@@ -28,7 +29,8 @@ initContainer:
       git clone https://github.com/SEOTAEEYOUL/item.git /data
   enabled: true
 
-  mysql: "mysql:8.4.0"
+  mysql:
+    image: "mysql:8.4.0"
     script: |
       # MySQL에 데이터 로딩
       for sql_file in /data/dump/*.sql; do
