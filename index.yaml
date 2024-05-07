@@ -3,20 +3,9 @@ entries:
   springmysql:
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2024-05-07T13:49:07.2352245+09:00"
+    created: "2024-05-07T13:52:22.9746724+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
-    digest: f010e87c8c0d574a32bc5f09003b46b0bb94ca0723eb0e81054f155602669636
-    icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
-    name: springmysql
-    type: application
-    urls:
-    - https://seotaeeyoul.github.io/helm-repo/springmysql-0.1.11.tgz
-    version: 0.1.11
-  - apiVersion: v2
-    appVersion: 2.1.0
-    created: "2024-05-07T13:49:07.2345172+09:00"
-    description: A Helm chart for Kubernetes - SpringBoot 예제
-    digest: f1ddadab40920a1bab94b920483c444f0ed2f21022b54b2694453c304c186ba4
+    digest: cad48cbe48b61de16ea02b7170f8dfdf7352f8f0cd030df5b6232bd7a5770874
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
     name: springmysql
     type: application
@@ -25,7 +14,7 @@ entries:
     version: 0.1.10
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2024-05-07T13:49:07.2418314+09:00"
+    created: "2024-05-07T13:52:22.9829833+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: e921749cc2ecb651e71d73f0eb3e91244d15b1f59c8cd8d1d82b62812ad29faa
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -36,7 +25,7 @@ entries:
     version: 0.1.9
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2024-05-07T13:49:07.2406948+09:00"
+    created: "2024-05-07T13:52:22.9819249+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: 12633e398431894c673aac423e3bee630b07b5ea36e7a4d98cbd09e555e90844
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -47,7 +36,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2024-05-07T13:49:07.2401674+09:00"
+    created: "2024-05-07T13:52:22.980856+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: e56dc97df1a3504b4cb18f46aa64f16ebe50668cd9ce6ce3d7aa81a86d103aaf
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -58,7 +47,7 @@ entries:
     version: 0.1.7
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2024-05-07T13:49:07.2396494+09:00"
+    created: "2024-05-07T13:52:22.9802621+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: ad03c99211374d5f855068e09c51b4134b6c41c9fad258a2dae93fabe8a1d222
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -69,7 +58,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2024-05-07T13:49:07.2385696+09:00"
+    created: "2024-05-07T13:52:22.9791945+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: beafa86f9ec149bdaba024218574ba74c7ae08d89b24f69fe9fc6e23c1d45b0c
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -80,7 +69,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-07T13:49:07.2380124+09:00"
+    created: "2024-05-07T13:52:22.9781033+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: 71a6bc37b943e6cb22227d9bd9f392a5d58b4bbbfaafaee1a95192427eb034f1
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -91,7 +80,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-07T13:49:07.2369009+09:00"
+    created: "2024-05-07T13:52:22.9769744+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: c8019dd8daaf40616605c8a9dc8f78c1ce8a8a9d853b147f52bc83e0bc8749b1
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -102,7 +91,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-07T13:49:07.2363461+09:00"
+    created: "2024-05-07T13:52:22.9758541+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: 9f13698911b25cbf502d7f0a2c40dc796f8d554b704e24e105588a8fe95ed3cf
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -113,7 +102,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-07T13:49:07.2334007+09:00"
+    created: "2024-05-07T13:52:22.9730553+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: a0731b7bef3c3589fdf13d3d06e8309881c7cf0b247b2b41716223b27e0e0d89
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -124,7 +113,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-07T13:49:07.2328424+09:00"
+    created: "2024-05-07T13:52:22.9699963+09:00"
     description: A Helm chart for Kubernetes - SpringBoot 예제
     digest: 8280560e172bbe00d6a04681abcb62d6940a544b0c97711e7ca5da5d85266d0e
     icon: https://github.com/SEOTAEEYOUL/SpringBootMySQL/tree/main/icon/logo.png
@@ -136,7 +125,7 @@ entries:
   springshop:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-05-07T13:49:07.2439522+09:00"
+    created: "2024-05-07T13:52:22.9847609+09:00"
     description: SpringBoot 로 만든 상점 예제
     digest: 1c1bee4795365dc8b35b9aa59b80d78c5aa5e4f088e57c3afbc53aeb8c9d1c0a
     name: springshop
@@ -144,4 +133,4 @@ entries:
     urls:
     - https://seotaeeyoul.github.io/helm-repo/springshop-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-07T13:49:07.2317262+09:00"
+generated: "2024-05-07T13:52:22.968775+09:00"
