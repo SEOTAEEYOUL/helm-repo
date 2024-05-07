@@ -65,6 +65,12 @@ spec:
 {{ . | indent 12 }}
         {{- end }}
         env:        
+        - name: REGION
+          value: {{ .Values.aws.region }}
+        - name: CLUSTER_NAME
+          value: {{ .Values.aws.eks.clusterName }}
+        - name: TITLE
+          value: {{ include "springmysql.fullname" . }}
         - name: DATABASE
           value: {{ .Values.db.database }}
         - name: DB_DRIVER
@@ -78,6 +84,10 @@ spec:
             secretKeyRef:
               name: {{ .Values.db.password }}
               key: password
+        - name: DB_PORT
+          value: "{{ .Values.db.port }}"
+        - name: TZ
+          value: {{ .Values.db.timezone }}
       {{- end }}
 
       containers:
@@ -117,6 +127,8 @@ spec:
             value: {{ .Values.aws.eks.clusterName }}
           - name: TITLE
             value: {{ include "springmysql.fullname" . }}
+          - name: DATABASE
+            value: {{ .Values.db.database }}
           - name: DB_DRIVER
             value: {{ .Values.db.driver }}
           - name: DB_CONNECTION
