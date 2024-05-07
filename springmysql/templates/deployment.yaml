@@ -84,6 +84,8 @@ spec:
             secretKeyRef:
               name: {{ .Values.db.password }}
               key: password
+        - name: DB_SERVER
+          value: "{{ .Values.db.server }}"
         - name: DB_PORT
           value: "{{ .Values.db.port }}"
         - name: TZ
@@ -140,6 +142,8 @@ spec:
               secretKeyRef:
                 name: {{ .Values.db.password }}
                 key: password
+          - name: DB_SERVER
+            value: "{{ .Values.db.server }}"
           - name: DB_PORT
             value: "{{ .Values.db.port }}"
           - name: TZ
