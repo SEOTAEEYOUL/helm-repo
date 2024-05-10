@@ -20,18 +20,15 @@ nameOverride: ""
 fullnameOverride: ""
 
 initContainer:
-  git:
-    image: "alpine/git"
+  enabled: true
+  initData:
+    image: "taeeyoul/gitmysql:0.1.0"
     script: |
       #!/bin/sh
 
       # GitHub 저장소 클론
       git clone https://github.com/SEOTAEEYOUL/item.git /data
-  enabled: true
 
-  mysql:
-    image: "mysql:8.4.0"
-    script: |
       # MySQL에 데이터 로딩
       for sql_file in /data/dump/*.sql; do
         filename=$(basename "$sql_file")
