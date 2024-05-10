@@ -23,7 +23,7 @@ initContainer:
   enabled: true
   initData:
     image: "taeeyoul/gitmysql:0.1.0"
-    imagePullPolicy: "Always"
+    pullPolicy: "Always"
     script: |
       #!/bin/sh
 
